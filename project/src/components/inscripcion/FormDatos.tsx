@@ -3,10 +3,10 @@ import { AlertCircle, Loader, CheckCircle2, Mail } from 'lucide-react';
 import emailjs from '@emailjs/browser';
 import { db } from '../../services/mockDb';
 
-// ─── CREDENCIALES EMAILJS ────────────────────────────────────────────────────
-const SERVICE_ID = "service_402gwje";
-const TEMPLATE_ID = "template_bhpkxod";
-const PUBLIC_KEY = "p4Avp5v5fPfraehyh";
+// ─── CREDENCIALES EMAILJS — CANAL 1: VERIFICACIÓN ────────────────────────────
+const SERVICE_ID  = import.meta.env.VITE_EMAILJS_SERVICE_ID as string;
+const TEMPLATE_ID = import.meta.env.VITE_EMAILJS_TEMPLATE_VERIFICACION as string;
+const PUBLIC_KEY  = import.meta.env.VITE_EMAILJS_PUBLIC_KEY as string;
 
 const capitalizarNombres = (str: string) =>
   str.toLowerCase().replace(/\b\w/g, l => l.toUpperCase());

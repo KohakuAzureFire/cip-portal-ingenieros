@@ -7,9 +7,10 @@ import {
   RefreshCw, Trash2, X, Eye, ClipboardList,
 } from 'lucide-react';
 
-const EJS_SERVICE = "service_402gwje";
-const EJS_TEMPLATE = "template_bhpkxod";
-const EJS_KEY = "p4Avp5v5fPfraehyh";
+// ─── CREDENCIALES EMAILJS — CANAL 2: RECHAZO ─────────────────────────────────
+const EJS_SERVICE          = import.meta.env.VITE_EMAILJS_SERVICE_ID as string;
+const EJS_TEMPLATE_RECHAZO = import.meta.env.VITE_EMAILJS_TEMPLATE_RECHAZO as string;
+const EJS_KEY              = import.meta.env.VITE_EMAILJS_PUBLIC_KEY as string;
 
 // ─── Modal Ver Voucher de cuota ───────────────────────────────────────────────
 interface ModalVoucherCuotaProps {
@@ -215,16 +216,20 @@ const SolicitudesTab: React.FC = () => {
     setSelected(null);
   };
 
+  const enviarCorreoRechazo = (postulante: Postulante, motivo: string) => {
+    emailjs.send(EJS_SERVICE, EJS_TEMPLATE_RECHAZO, {
+      to_name: postulante.nombre_completo,
+      to_email: postulante.email,
+      motivo_rechazo: motivo,
+      time: new Date().toLocaleString('es-PE'),
+    }, EJS_KEY).catch(() => {});
+  };
+
   const handleObservar = (id: string) => {
     if (!observaciones.trim()) return;
     const postulante = db.getPostulanteById(id);
     db.updatePostulante(id, { estado: 'Rechazado' as any, motivoRechazo: observaciones.trim() } as any);
-    if (postulante) {
-      emailjs.send(EJS_SERVICE, EJS_TEMPLATE, {
-        correo_destino: postulante.email,
-        codigo: `Su solicitud fue observada: ${observaciones.trim()}`,
-      }, EJS_KEY).catch(() => {});
-    }
+    if (postulante) enviarCorreoRechazo(postulante, observaciones.trim());
     setObservaciones('');
     load();
     setSelected(null);
@@ -233,12 +238,7 @@ const SolicitudesTab: React.FC = () => {
   const handleRechazar = (id: string, motivo: string) => {
     const postulante = db.getPostulanteById(id);
     db.updatePostulante(id, { estado: 'Rechazado' as any, motivoRechazo: motivo } as any);
-    if (postulante) {
-      emailjs.send(EJS_SERVICE, EJS_TEMPLATE, {
-        correo_destino: postulante.email,
-        codigo: `Su solicitud de inscripción al CIP fue rechazada. Motivo: ${motivo}`,
-      }, EJS_KEY).catch(() => {});
-    }
+    if (postulante) enviarCorreoRechazo(postulante, motivo);
     setRechazoTarget(null);
     load();
     setSelected(null);
