@@ -8,9 +8,9 @@ import {
 } from 'lucide-react';
 
 // ─── CREDENCIALES EMAILJS — CANAL 2: RECHAZO ─────────────────────────────────
-const EJS_SERVICE          = import.meta.env.VITE_EMAILJS_SERVICE_ID as string;
-const EJS_TEMPLATE_RECHAZO = import.meta.env.VITE_EMAILJS_TEMPLATE_RECHAZO as string;
-const EJS_KEY              = import.meta.env.VITE_EMAILJS_PUBLIC_KEY as string;
+const EJS_SERVICE          = "service_402gwje";
+const EJS_TEMPLATE_RECHAZO = "template_23fs3jl";
+const EJS_KEY              = "p4Avp5v5fPfraehyh";
 
 // ─── Modal Ver Voucher de cuota ───────────────────────────────────────────────
 interface ModalVoucherCuotaProps {
