@@ -47,6 +47,7 @@ npm run dev   # disponible en http://localhost:5173
 
 ## Estructura del proyecto
 
+```bash
 portal-cip/
 ├─ src/
 │   ├─ components/
@@ -65,6 +66,7 @@ portal-cip/
 ├─ vite.config.ts
 ├─ tsconfig.app.json
 └─ package.json
+```
 
 ---
 
