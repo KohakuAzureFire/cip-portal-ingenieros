@@ -34,16 +34,12 @@ Portal CIP es una aplicación web desarrollada con **React 18 + TypeScript + Vit
 ```bash
 # 1. Clonar el repositorio
 git clone <repo-url>
-cd portal-cip
+cd project
 
 # 2. Instalar dependencias
 npm install
 
-# 3. Configurar variables de entorno
-cp .env.example .env
-# Edita .env con las credenciales de Bolt Database
-
-# 4. Iniciar el servidor de desarrollo
+# 3. Iniciar el servidor de desarrollo
 npm run dev   # disponible en http://localhost:5173
 ```
 
@@ -69,3 +65,49 @@ portal-cip/
 ├─ vite.config.ts
 ├─ tsconfig.app.json
 └─ package.json
+
+---
+
+## Roles del Sistema
+
+| Rol | Acceso y Permisos |
+| :--- | :--- |
+| **Admin General** | Panel de control total, padrón de ingenieros, gestión y auditoría de cuotas. |
+| **Secretario** | Bandeja de solicitudes de inscripción, revisión, aprobación y rechazo. |
+| **Postulante** | Formulario de inscripción en 3 pasos, consulta en tiempo real del estado de solicitud. |
+| **Ingeniero** | Acceso a perfil personal, estado de cuenta actualizado y visualización de carné digital. |
+
+---
+
+## Flujo de Inscripción y Ciclo de Vida
+
+1. **Registro Inicial:** El postulante completa los 3 pasos esenciales: Datos personales (DNI + verificación por correo), carga de documentos (Foto personal, Título profesional en PDF, Voucher de pago de S/ 1,500) y confirmación de envío.
+2. **Evaluación:** La secretaría revisa minuciosamente la solicitud en el panel de administración.
+3. **Rechazo con Feedback:** Si algún documento es incorrecto o inválido, la solicitud se rechaza ingresando un motivo obligatorio, lo que bloquea y oculta el panel del postulante permitiéndole únicamente auto-eliminar su intento para liberar sus credenciales y re-postular con datos corregidos.
+4. **Aprobación y Colegiatura:** Al aprobar la solicitud, el sistema genera de forma automática un número CIP único de 5 dígitos y emite el carné digital oficial.
+5. **Esquema de Cuotas:** El primer mes de colegiatura es completamente gratuito. A partir del segundo mes, la cuota ordinaria es de `S/ 20.00/mes`.
+6. **Control de Habilidad:** Si el ingeniero acumula deudas fuera del mes correspondiente, su estado cambia automáticamente a **Inhabilitado** y el carné digital mostrará una marca de agua restrictiva.
+
+---
+
+## Cuentas de Prueba (Credenciales)
+
+| Rol | Correo Electrónico | Contraseña |
+| :--- | :--- | :--- |
+| **Admin General** | `admin@cip.org.pe` | `pass123` |
+| **Secretario** | `secretaria@cip.org.pe` | `pass123` |
+| **Ingeniero Hábil** | `j.perez@ingenieros.pe` | `pass123` |
+| **Ingeniero Inhabilitado** | `m.lopez@ingenieros.pe` | `pass123` |
+
+---
+
+## Scripts Disponibles
+
+En la raíz del directorio `/project`, puedes ejecutar los siguientes comandos de entorno:
+
+```bash
+npm run dev       # Levanta el servidor de desarrollo local con hot-reload
+npm run build     # Compila y optimiza la aplicación para producción
+npm run lint      # Ejecuta el análisis estático de código con ESLint
+npm run preview   # Previsualiza localmente el build de producción generado
+npm run typecheck # Corre la verificación de tipos estáticos de TypeScript
