@@ -29,18 +29,23 @@ Portal CIP es una aplicación web desarrollada con **React 18 + TypeScript + Vit
 
 ---
 
-## Cómo levantar el proyecto
+## Instrucciones de Instalación y Despliegue Local
+
+Sigue estos pasos en tu terminal para clonar el proyecto, instalar sus dependencias y levantar el servidor de desarrollo correctamente:
 
 ```bash
-# 1. Clonar el repositorio
-git clone <repo-url>
+# 1. Clonar el repositorio en tu computadora
+git clone [https://github.com/KohakuAzureFire/cip-portal-ingenieros.git](https://github.com/KohakuAzureFire/cip-portal-ingenieros.git)
+
+# 2. Entrar a la carpeta del repositorio y luego al directorio del proyecto
+cd cip-portal-ingenieros
 cd project
 
-# 2. Instalar dependencias
+# 3. Instalar todos los módulos y dependencias de Node.js
 npm install
 
-# 3. Iniciar el servidor de desarrollo
-npm run dev   # disponible en http://localhost:5173
+# 4. Iniciar el servidor de desarrollo local
+npm run dev
 ```
 
 ---
